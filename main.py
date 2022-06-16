@@ -1,6 +1,6 @@
 # script to derive products from LIDAR data
+# script settings are found in options.py
 
-import arcpy
 
 if __name__ == '__main__':
 
