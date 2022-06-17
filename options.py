@@ -26,6 +26,10 @@ convertToLAS = False
 createLasDataset = False
 # create a digital elevation model raster
 createDEM = True
+# create contour lines
+createContour = True
+# create a triangulated irregular network
+createTIN = True
 
 # LAS/LAZ/ZLAS directory
 # all matching files in the directory will be converted
@@ -48,6 +52,18 @@ lasFolder = outputFolder
 # must end in .lasd
 lasDataset = r"D:\Projects_Tower2019\GIS\Lidar\data\wind_cave_lasd.lasd"
 
-# DEM file name to be stored in the geodatabase
-demRaster = arcpy.env.workspace + r"\wind_cave_DEM"
+# product resolution/interval (units are based on definedCRS)
+# used as the raster cell size for the DEM
+# used as the contour interval
+# used as the window size for thinning points in the TIN
+resolution = 5
 
+# DEM file name to be stored in the geodatabase
+demRaster = arcpy.env.workspace + r"\wind_cave_LASD_DEM"
+
+# contour feature class file name to be stored in the geodatabase
+contourFeature = arcpy.env.workspace + r"\wind_cave_LASD_contour"
+
+# TIN dataset name
+# this will be a directory
+tinDataset = r"D:\Projects_Tower2019\GIS\Lidar\data\wind_cave_LASD_TIN"

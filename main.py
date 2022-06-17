@@ -1,7 +1,6 @@
 # script to derive products from LIDAR data
 # script settings are found in options.py
 
-import sys
 import glob
 import arcpy
 
@@ -34,7 +33,25 @@ if __name__ == '__main__':
 		print("Creating DEM")
 		result = arcpy.conversion.LasDatasetToRaster(
 			lasDataset,
-			demRaster
+			demRaster,
+			sampling_value=resolution
 		)
 		if verboseOutput: print(result)
-
+	if createContour:
+		print("Create Contour Lines")
+		result = arcpy.ddd.SurfaceContour(
+			lasDataset,
+			contourFeature,
+			resolution
+		)
+		if verboseOutput: print(result)
+	if createTIN:
+		print("Creating TIN")
+		result = arcpy.ddd.LasDatasetToTin(
+			lasDataset,
+			tinDataset,
+			thinning_type="WINDOW_SIZE",
+			thinning_method="CLOSEST_TO_MEAN",
+			thinning_value=resolution
+		)
+		if verboseOutput: print(result)
