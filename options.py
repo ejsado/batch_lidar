@@ -1,6 +1,5 @@
 import arcpy
 
-
 # GENERAL OPTIONS
 
 # environment settings
