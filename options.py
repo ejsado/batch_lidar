@@ -1,6 +1,7 @@
 import arcpy
 
-# SET OPTIONS
+
+# GENERAL OPTIONS
 
 # environment settings
 # set the geodatabase where the script will create items
@@ -14,13 +15,17 @@ arcpy.env.overwriteOutput = True
 # https://pro.arcgis.com/en/pro-app/latest/arcpy/geoprocessing_and_python/using-tools-in-python.htm
 verboseOutput = True
 
-# select which operations to perform
-# set these values to false if you wish to skip certain steps
 
+# GEOPROCESSING OPTIONS
+
+# select which operations to perform
+# set these values to False if you wish to skip certain steps
 # convert a directory of lidar data files to .las
-convertToLAS = True
+convertToLAS = False
 # create a dataset containing a collection of .las files
-createLasDataset = True
+createLasDataset = False
+# create a digital elevation model raster
+createDEM = True
 
 # LAS/LAZ/ZLAS directory
 # all matching files in the directory will be converted
@@ -35,6 +40,14 @@ definedCRS = arcpy.SpatialReference(6342, 5703)
 # output folder for files converted to LAS
 outputFolder = r"D:\Projects_Tower2019\GIS\Lidar\data\LAS_output"
 
-# text to append to converted LAS files
-convertedText = "_converted"
+# folder containing LAS files for the LAS dataset
+lasFolder = outputFolder
+
+# LAS dataset name and location
+# this file will be overwritten if it already exists
+# must end in .lasd
+lasDataset = r"D:\Projects_Tower2019\GIS\Lidar\data\wind_cave_lasd.lasd"
+
+# DEM file name to be stored in the geodatabase
+demRaster = arcpy.env.workspace + r"\wind_cave_DEM"
 
